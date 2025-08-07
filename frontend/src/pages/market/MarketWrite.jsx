@@ -1,4 +1,4 @@
-// ✅ src/pages/market/MarketWrite.jsx
+// src/pages/market/MarketWrite.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -15,12 +15,12 @@ const MarketWrite = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [images, setImages] = useState([]); // preview용
-  const [imageFiles, setImageFiles] = useState([]); // 파일 원본
+  const [images, setImages] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files).slice(0, 3); // 최대 3장
+    const files = Array.from(e.target.files).slice(0, 3);
     setImages(files.map((file) => URL.createObjectURL(file)));
     setImageFiles(files);
   };
@@ -36,7 +36,6 @@ const MarketWrite = () => {
     try {
       setLoading(true);
 
-      // Cloudinary에 이미지 업로드
       const uploadedImageURLs = [];
       for (const file of imageFiles) {
         const url = await uploadToCloudinary(file);
@@ -134,5 +133,3 @@ const MarketWrite = () => {
 };
 
 export default MarketWrite;
-
-
